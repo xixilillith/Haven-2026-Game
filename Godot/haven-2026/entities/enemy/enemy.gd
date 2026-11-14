@@ -25,8 +25,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	on_screen = false
 
 
-func _on_timer_timeout() -> void:
-	var new_pencil = pencil_tscn.instantiate()
-	new_pencil.global_position = global_position
-	new_pencil.velocity = player_vec
-	get_tree().current_scene.add_child(new_pencil)
+#func _on_timer_timeout() -> void:
+#	var new_pencil = pencil_tscn.instantiate()
+#	new_pencil.global_position = global_position
+#	new_pencil.velocity = player_vec
+#	get_tree().current_scene.add_child(new_pencil)
