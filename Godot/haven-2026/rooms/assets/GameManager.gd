@@ -148,7 +148,8 @@ func _load_room(room_scene: PackedScene, target_pos: Vector2 = Vector2.ZERO) -> 
 		room_instance.global_position = target_pos
 		get_tree().current_scene.add_child(room_instance)
 		spawned_rooms[current_coords] = room_instance
-		#instert tweening
+		var cam_tween = get_tree().create_tween()
+		cam_tween.tween_property(get_viewport().get_camera_2d(), "global_position", target_pos, 1)
 	"""
 	get_tree().change_scene_to_file.call_deferred(scene_path)
 	# Wait for the deferred scene swap to finish loading the new room
