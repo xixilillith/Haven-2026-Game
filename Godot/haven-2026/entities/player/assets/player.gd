@@ -43,8 +43,12 @@ func _physics_process(delta: float) -> void:
 			bouncing = false
 	else:
 		if not death_anim:
+			$Face.visible = false
 			$Body.play("death")
 			death_anim = true
+			await $Body.animation_finished
+			$Body.visible = false
+			drag_line.visible = false
 
 func _on_drag_mouse_entered() -> void:
 	if draggable != true:

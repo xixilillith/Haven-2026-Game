@@ -36,6 +36,7 @@ func _on_timer_timeout() -> void:
 		var new_pencil = pencil_tscn.instantiate()
 		new_pencil.global_position = global_position
 		new_pencil.velocity = player_vec
+		new_pencil.global_rotation = global_position.angle_to(get_tree().current_scene.find_child("Player").global_position)
 		get_tree().current_scene.add_child(new_pencil)
 
 func update_anim() -> void:
