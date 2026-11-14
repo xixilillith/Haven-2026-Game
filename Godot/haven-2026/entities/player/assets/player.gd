@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const FRICTION = 0.3
+const FRICTION = 1
 @export var drag_line: Line2D
 const MAX_DRAG = 200.0
-const POWER = 2.5
+const POWER = 3.5
 var bouncing := false
 var draggable := false
 var dragging := false
