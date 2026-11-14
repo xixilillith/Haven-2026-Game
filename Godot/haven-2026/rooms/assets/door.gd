@@ -1,8 +1,12 @@
 extends Area2D
+@export var size_x: float
+@export var size_y: float
 @export_enum("N","S","E","W") var door_direction: String = "E"#export enum sets the dropdown in inspector and allows you to check direction, second part defaults it to E
 
 @onready var tween = get_tree().create_tween()
 func _ready() -> void:#godot always automatically calls it when door is added
+	$CollisionShape2D.scale.x = size_x
+	$CollisionShape2D.scale.y = size_y
 	body_entered.connect(_on_body_entered)
 	# Handles rooms where CharacterBody2D is already saved inside the scene
 	if GameManager.entry_direction == door_direction:
