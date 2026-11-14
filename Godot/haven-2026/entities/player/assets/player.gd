@@ -13,8 +13,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	print(draggable)
+	var mouse_pos = get_global_mouse_position()
+	var pull_vec = global_position - mouse_pos
+	var drag_vec = mouse_pos - global_position
+	var line_max = drag_vec.limit_length(MAX_DRAG)
 	drag_line.set_point_position(0, global_position)
-	drag_line.set_point_position(1, get_global_mouse_position())
+	drag_line.set_point_position(1, (global_position + line_max))
 	if Input.is_action_pressed("drag") and draggable:
 		dragging = true
 		drag_line.visible = true
@@ -22,8 +26,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("drag") and dragging:
 		dragging = false
 		drag_line.visible = false
-		var mouse_pos = get_global_mouse_position()
-		var pull_vec = global_position - mouse_pos
 		pull_vec = pull_vec.limit_length(MAX_DRAG)
 		velocity = pull_vec * POWER
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
