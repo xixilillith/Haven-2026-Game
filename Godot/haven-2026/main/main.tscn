@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cm3qvyhmvib1d" path="res://rooms/room_scenes/1_Doors/N.tscn" id="1_4dugh"]
 [ext_resource type="PackedScene" uid="uid://bj1t26sx5cpc0" path="res://entities/player/player.tscn" id="1_53q0u"]
 [ext_resource type="PackedScene" uid="uid://vrkuhoxfj7by" path="res://entities/player/assets/draggable_line.tscn" id="2_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://b0eq52l4hkjyp" path="res://rooms/room_scenes/1_Doors/W.tscn" id="3_grrlh"]
+[ext_resource type="PackedScene" uid="uid://dyyikfdu10m8" path="res://rooms/room_scenes/2_doors/N_E.tscn" id="4_0i4oc"]
+[ext_resource type="PackedScene" uid="uid://rusxw3klbs7c" path="res://rooms/room_scenes/3_Doors/N_E_S.tscn" id="5_bsumw"]
+[ext_resource type="PackedScene" uid="uid://d20oenai5y36k" path="res://rooms/room_scenes/1_Doors/E.tscn" id="6_0i4oc"]
+[ext_resource type="PackedScene" uid="uid://bg52njj1tfc08" path="res://rooms/room_scenes/3_Doors/E_S_W.tscn" id="7_bsumw"]
+[ext_resource type="PackedScene" uid="uid://btffj1t5atklx" path="res://rooms/room_scenes/1_Doors/Boss.tscn" id="8_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://cturme0vum084" path="res://entities/enemy/enemy.tscn" id="11_bsumw"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
 
@@ -21,3 +28,8 @@ drag_line = NodePath("../draggable_line")
 [node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
 visible = false
 top_level = true
+
+[node name="Area2D" parent="." unique_id=1041187423 instance=ExtResource("11_bsumw")]
+
+[editable path="Rooms/room3"]
+[editable path="Rooms/room3/Door_W"]

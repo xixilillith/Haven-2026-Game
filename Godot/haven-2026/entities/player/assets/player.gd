@@ -37,6 +37,10 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		
 		animation_update()
+		if velocity != Vector2.ZERO:
+			bouncing = true
+		else:
+			bouncing = false
 	else:
 		if not death_anim:
 			$Body.play("death")
