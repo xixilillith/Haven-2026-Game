@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const FRICTION = 1
+const FRICTION = 0.3
 @export var drag_line: Line2D
 const MAX_DRAG = 200.0
-const POWER = 1.5
+const POWER = 2.5
 var bouncing := false
 var draggable := false
 var dragging := false
@@ -12,6 +12,8 @@ func _ready() -> void:
 	drag_line.visible = false
 
 func _physics_process(delta: float) -> void:
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+	
 	print(draggable)
 	var mouse_pos = get_global_mouse_position()
 	var pull_vec = global_position - mouse_pos
@@ -28,12 +30,13 @@ func _physics_process(delta: float) -> void:
 		drag_line.visible = false
 		pull_vec = pull_vec.limit_length(MAX_DRAG)
 		velocity = pull_vec * POWER
-	velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+	else:	
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	
 	animation_update()
-
-	global_position = global_position + (velocity * delta)
-	move_and_slide()
 
 func _on_drag_mouse_entered() -> void:
 	if draggable != true:
