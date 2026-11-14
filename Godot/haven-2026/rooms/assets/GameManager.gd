@@ -2,6 +2,7 @@ extends Node
 const ROOM_SIZE := Vector2(480, 270)
 const PLAYER_SCENE := preload("res://Entities/Player/player.tscn")
 #allows it to autoload
+var spawned_rooms: Dictionary = {} # Vector2i -> Node2D
 const DIRS := {
 	#assigns direction to grid offsets
 	"N": Vector2i.UP,
@@ -128,20 +129,33 @@ func start_run() -> void:
 	entry_direction = ""
 	_load_room(dungeon[current_coords]["scene"])
 func move_through_door(exit_direction: String) -> void:
+	
 	var next_coords: Vector2i = current_coords + DIRS[exit_direction]
 	if not dungeon.has(current_coords):
 		return
 	var current_room: Node2D = spawned_rooms.get(current_coords)
-		
-	current_coords += DIRS[exit_direction]
+	var current_pos := current_coords
+	var next_room_pos := next_coords 
+	current_coords += next_coords
 	entry_direction = OPPOSITE[exit_direction]
-	_load_room(dungeon[current_coords]["scene"])
-func _load_room(scene_path: String) -> void:
+	_load_room(dungeon[current_coords]["scene"], next_room_pos)
+func _load_room(room_scene: PackedScene, target_pos: Vector2 = Vector2.ZERO) -> void:
+	var room_instance: Node2D
+	if spawned_rooms.has(current_coords) and is_instance_valid(spawned_rooms[current_coords]):
+		room_instance = spawned_rooms[current_coords]
+	else:
+		room_instance = room_scene.instantiate() as Node2D
+		room_instance.global_position = target_pos
+		get_tree().current_scene.add_child(room_instance)
+		spawned_rooms[current_coords] = room_instance
+		#instert tweening
+	"""
 	get_tree().change_scene_to_file.call_deferred(scene_path)
 	# Wait for the deferred scene swap to finish loading the new room
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_spawn_and_position_player()
+	"""
 func _spawn_and_position_player() -> void:
 	var room := get_tree().current_scene
 	if room == null:
