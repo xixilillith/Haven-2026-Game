@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dewnx5oluixoe"]
+
+[ext_resource type="Script" uid="uid://d0iqu3v4tdwk2" path="res://entities/enemy/assets/pencil.gd" id="1_6c5tb"]
+[ext_resource type="Texture2D" uid="uid://c6kimpgy52yjg" path="res://entities/enemy/assets/pencil.png" id="1_rb6ij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juppl"]
+size = Vector2(16, 7)
+
+[node name="Pencil" type="Area2D" unique_id=2038797654]
+texture_filter = 1
+collision_layer = 2
+script = ExtResource("1_6c5tb")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=920261236]
+texture = ExtResource("1_rb6ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=868150960]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_juppl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

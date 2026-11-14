@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var death_anim = false
+var health = 100
 const FRICTION = 1
 @export var drag_line: Line2D
 const MAX_DRAG = 200.0
@@ -9,31 +11,36 @@ var draggable := false
 var dragging := false
 
 func _physics_process(delta: float) -> void:
-	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
-	
-	print(draggable)
-	var mouse_pos = get_global_mouse_position()
-	var pull_vec = global_position - mouse_pos
-	var drag_vec = mouse_pos - global_position
-	var line_max = drag_vec.limit_length(MAX_DRAG)
-	drag_line.set_point_position(0, global_position)
-	drag_line.set_point_position(1, (global_position + line_max))
-	if Input.is_action_pressed("drag") and draggable:
-		dragging = true
-		drag_line.visible = true
-		velocity = Vector2.ZERO
-	if Input.is_action_just_released("drag") and dragging:
-		dragging = false
-		drag_line.visible = false
-		pull_vec = pull_vec.limit_length(MAX_DRAG)
-		velocity = pull_vec * POWER
+	if not is_dead():
+		var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 		
-	if collision:
-		velocity = velocity.bounce(collision.get_normal())
-	else:	
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-	
-	animation_update()
+		print(draggable)
+		var mouse_pos = get_global_mouse_position()
+		var pull_vec = global_position - mouse_pos
+		var drag_vec = mouse_pos - global_position
+		var line_max = drag_vec.limit_length(MAX_DRAG)
+		drag_line.set_point_position(0, global_position)
+		drag_line.set_point_position(1, (global_position + line_max))
+		if Input.is_action_pressed("drag") and draggable:
+			dragging = true
+			drag_line.visible = true
+			velocity = Vector2.ZERO
+		if Input.is_action_just_released("drag") and dragging:
+			dragging = false
+			drag_line.visible = false
+			pull_vec = pull_vec.limit_length(MAX_DRAG)
+			velocity = pull_vec * POWER
+			
+		if collision:
+			velocity = velocity.bounce(collision.get_normal())
+		else:	
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		
+		animation_update()
+	else:
+		if not death_anim:
+			$Body.play("death")
+			death_anim = true
 
 func _on_drag_mouse_entered() -> void:
 	if draggable != true:
@@ -59,3 +66,12 @@ func animation_update() -> void:
 			$Face.animation = "roll_v"
 			$Face.flip_v = true if velocity.y > 0 else false
 			$Face.play()
+
+func take_damage(amount: int) -> void:
+	health -= 100
+
+func is_dead() -> bool:
+	if health <= 0:
+		return true
+	else:
+		return false

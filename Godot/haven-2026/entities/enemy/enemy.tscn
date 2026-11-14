@@ -126,4 +126,9 @@ shape = SubResource("CapsuleShape2D_0ghhj")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=47339668]
 rect = Rect2(-7, -10, 14, 20)
 
+[node name="Timer" type="Timer" parent="." unique_id=1548856479]
+wait_time = 0.5
+autostart = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
