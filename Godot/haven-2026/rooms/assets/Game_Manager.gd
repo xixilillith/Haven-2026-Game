@@ -17,27 +17,27 @@ const OPPOSITE := {
 }
 const ROOM_POOLS := {
 	#1-Door
-	"N": ["res://Rooms/Room_Scenes/All_Room_Types/1_Door_Rooms/N.tscn"],
-	"E": ["res://Rooms/Room_Scenes/All_Room_Types/1_Door_Rooms/E.tscn"],
-	"S": ["res://Rooms/Room_Scenes/All_Room_Types/1_Door_Rooms/S.tscn"],
-	"W": ["res://Rooms/Room_Scenes/All_Room_Types/1_Door_Rooms/W.tscn"],
+	"N": ["res://rooms/room_scenes/1_Doors/N.tscn"],
+	"E": ["res://rooms/room_scenes/1_Doors/E.tscn"],
+	"S": ["res://rooms/room_scenes/1_Doors/S.tscn"],
+	"W": ["res://rooms/room_scenes/1_Doors/W.tscn"],
 	#2-Doors
-	"ES": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/E_S.tscn"],
-	"EW": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/E_W.tscn"],
-	"EN": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/N_E.tscn"],
-	"NS": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/N_S.tscn"],
-	"NW": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/N_W.tscn"],
-	"SW": ["res://Rooms/Room_Scenes/All_Room_Types/2_Door_Rooms/S_W.tscn"],
+	"ES": ["res://rooms/room_scenes/2_doors/E_S.tscn"],
+	"EW": ["res://rooms/room_scenes/2_doors/E_W.tscn"],
+	"EN": ["res://rooms/room_scenes/2_doors/N_E.tscn"],
+	"NS": ["res://rooms/room_scenes/2_doors/N_S.tscn"],
+	"NW": ["res://rooms/room_scenes/2_doors/N_W.tscn"],
+	"SW": ["res://rooms/room_scenes/2_doors/S_W.tscn"],
 	#3-Doors
-	"ESW": ["res://Rooms/Room_Scenes/All_Room_Types/3_Door_Rooms/E_S_W.tscn"],
-	"ENS": ["res://Rooms/Room_Scenes/All_Room_Types/3_Door_Rooms/N_E_S.tscn"],
-	"ENW": ["res://Rooms/Room_Scenes/All_Room_Types/3_Door_Rooms/N_E_W.tscn"],
-	"NSW": ["res://Rooms/Room_Scenes/All_Room_Types/3_Door_Rooms/N_S_W.tscn"], 
+	"ESW": ["res://rooms/room_scenes/3_Doors/E_S_W.tscn"],
+	"ENS": ["res://rooms/room_scenes/3_Doors/N_E_S.tscn"],
+	"ENW": ["res://rooms/room_scenes/3_Doors/N_E_W.tscn"],
+	"NSW": ["res://rooms/room_scenes/3_Doors/N_S_W.tscn"], 
 	#4-Doors
-	"ENSW": ["res://Rooms/Room_Scenes/All_Room_Types/4_Door_Rooms/N_S_E_W.tscn"]
+	"ENSW": ["res://rooms/room_scenes/4_Doors/N_E_S_W.tscn"]
 }
 
-const BOSS_ROOM_SCENE := "res://Rooms/Room_Scenes/All_Room_Types/1_Door_Rooms/Boss.tscn"
+const BOSS_ROOM_SCENE := "res://rooms/room_scenes/1_Doors/Boss.tscn"
 #stores boss scene
 #Variables for States
 var dungeon: Dictionary = {}
@@ -172,3 +172,4 @@ func _spawn_and_position_player() -> void:
 		else:
 			player.global_position = Vector2(224, 136)
 var target_door_name: String = "" 
+ 		
