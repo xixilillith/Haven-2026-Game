@@ -28,7 +28,9 @@ func _physics_process(delta: float) -> void:
 		drag_line.visible = false
 		pull_vec = pull_vec.limit_length(MAX_DRAG)
 		velocity = pull_vec * POWER
-
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+	
+	animation_update()
 
 	global_position = global_position + (velocity * delta)
 	move_and_slide()
@@ -41,3 +43,19 @@ func _on_drag_mouse_entered() -> void:
 func _on_drag_mouse_exited() -> void:
 	if draggable != false:
 		draggable = false
+
+func animation_update() -> void:
+	if velocity == Vector2.ZERO:
+		$Face.animation = "default"
+		$Face.flip_h = false
+		$Face.flip_v = false
+		$Face.play()
+	else:
+		if abs(velocity.x) > abs(velocity.y):
+			$Face.animation = "roll_h"
+			$Face.flip_h = true if velocity.x < 0 else false
+			$Face.play()
+		else:
+			$Face.animation = "roll_v"
+			$Face.flip_v = true if velocity.y > 0 else false
+			$Face.play()

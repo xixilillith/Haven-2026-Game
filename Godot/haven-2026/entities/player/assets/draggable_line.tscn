@@ -2,3 +2,4 @@
 
 [node name="draggable_line" type="Line2D" unique_id=1801116903]
 points = PackedVector2Array(2, -3, 81, 1)
+width = 2.0
