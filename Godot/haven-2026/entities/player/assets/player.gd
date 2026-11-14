@@ -68,7 +68,7 @@ func animation_update() -> void:
 			$Face.play()
 
 func take_damage(amount: int) -> void:
-	health -= 100
+	health -= amount
 
 func is_dead() -> bool:
 	if health <= 0:
