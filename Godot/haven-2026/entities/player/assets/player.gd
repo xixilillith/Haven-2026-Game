@@ -8,9 +8,6 @@ var bouncing := false
 var draggable := false
 var dragging := false
 
-func _ready() -> void:
-	drag_line.visible = false
-
 func _physics_process(delta: float) -> void:
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	

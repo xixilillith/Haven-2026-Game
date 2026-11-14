@@ -17,7 +17,8 @@ position = Vector2(-240, -135)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1378615440]
 
 [node name="Player" parent="." unique_id=1011859006 node_paths=PackedStringArray("drag_line") instance=ExtResource("1_53q0u")]
-drag_line = NodePath("draggable_line")
+drag_line = NodePath("../draggable_line")
 
-[node name="draggable_line" parent="Player" unique_id=1801116903 instance=ExtResource("2_pjrb6")]
+[node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
+visible = false
 top_level = true
