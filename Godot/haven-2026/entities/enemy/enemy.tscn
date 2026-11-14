@@ -129,6 +129,7 @@ rect = Rect2(-7, -10, 14, 20)
 
 [node name="Timer" type="Timer" parent="." unique_id=1548856479]
 wait_time = 0.5
+autostart = true
 
 [node name="flesh_sprite" type="Sprite2D" parent="." unique_id=610680307]
 visible = false
