@@ -1,4 +1,5 @@
 extends Node
+const ROOM_SIZE := Vector2(480, 270)
 const PLAYER_SCENE := preload("res://Entities/Player/player.tscn")
 #allows it to autoload
 const DIRS := {
@@ -17,27 +18,27 @@ const OPPOSITE := {
 }
 const ROOM_POOLS := {
 	#1-Door
-	"N": ["res://rooms/room_scenes/1_Doors/N.tscn"],
-	"E": ["res://rooms/room_scenes/1_Doors/E.tscn"],
-	"S": ["res://rooms/room_scenes/1_Doors/S.tscn"],
-	"W": ["res://rooms/room_scenes/1_Doors/W.tscn"],
+	"N": preload("res://rooms/room_scenes/1_Doors/N.tscn"),
+	"E": preload("res://rooms/room_scenes/1_Doors/E.tscn"),
+	"S": preload("res://rooms/room_scenes/1_Doors/S.tscn"),
+	"W": preload("res://rooms/room_scenes/1_Doors/W.tscn"),
 	#2-Doors
-	"ES": ["res://rooms/room_scenes/2_doors/E_S.tscn"],
-	"EW": ["res://rooms/room_scenes/2_doors/E_W.tscn"],
-	"EN": ["res://rooms/room_scenes/2_doors/N_E.tscn"],
-	"NS": ["res://rooms/room_scenes/2_doors/N_S.tscn"],
-	"NW": ["res://rooms/room_scenes/2_doors/N_W.tscn"],
-	"SW": ["res://rooms/room_scenes/2_doors/S_W.tscn"],
+	"ES": preload("res://rooms/room_scenes/2_doors/E_S.tscn"),
+	"EW": preload("res://rooms/room_scenes/2_doors/E_W.tscn"),
+	"EN": preload("res://rooms/room_scenes/2_doors/N_E.tscn"),
+	"NS": preload("res://rooms/room_scenes/2_doors/N_S.tscn"),
+	"NW": preload("res://rooms/room_scenes/2_doors/N_W.tscn"),
+	"SW": preload("res://rooms/room_scenes/2_doors/S_W.tscn"),
 	#3-Doors
-	"ESW": ["res://rooms/room_scenes/3_Doors/E_S_W.tscn"],
-	"ENS": ["res://rooms/room_scenes/3_Doors/N_E_S.tscn"],
-	"ENW": ["res://rooms/room_scenes/3_Doors/N_E_W.tscn"],
-	"NSW": ["res://rooms/room_scenes/3_Doors/N_S_W.tscn"], 
+	"ESW": preload("res://rooms/room_scenes/3_Doors/E_S_W.tscn"),
+	"ENS": preload("res://rooms/room_scenes/3_Doors/N_E_S.tscn"),
+	"ENW": preload("res://rooms/room_scenes/3_Doors/N_E_W.tscn"),
+	"NSW": preload("res://rooms/room_scenes/3_Doors/N_S_W.tscn"), 
 	#4-Doors
-	"ENSW": ["res://rooms/room_scenes/4_Doors/N_E_S_W.tscn"]
+	"ENSW": preload("res://rooms/room_scenes/4_Doors/N_E_S_W.tscn")
 }
 
-const BOSS_ROOM_SCENE := "res://rooms/room_scenes/1_Doors/Boss.tscn"
+const BOSS_ROOM_SCENE := preload("res://rooms/room_scenes/1_Doors/Boss.tscn")
 #stores boss scene
 #Variables for States
 var dungeon: Dictionary = {}
@@ -127,8 +128,11 @@ func start_run() -> void:
 	entry_direction = ""
 	_load_room(dungeon[current_coords]["scene"])
 func move_through_door(exit_direction: String) -> void:
+	var next_coords: Vector2i = current_coords + DIRS[exit_direction]
 	if not dungeon.has(current_coords):
 		return
+	var current_room: Node2D = spawned_rooms.get(current_coords)
+		
 	current_coords += DIRS[exit_direction]
 	entry_direction = OPPOSITE[exit_direction]
 	_load_room(dungeon[current_coords]["scene"])

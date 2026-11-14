@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://bpw8lk6bsr2x0"]
 
 [ext_resource type="PackedScene" uid="uid://bj1t26sx5cpc0" path="res://entities/player/player.tscn" id="1_53q0u"]
+[ext_resource type="PackedScene" uid="uid://bhhaoeepwyca1" path="res://rooms/room_scenes/2_doors/N_W.tscn" id="1_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://vrkuhoxfj7by" path="res://entities/player/assets/draggable_line.tscn" id="2_pjrb6"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
+
+[node name="Rooms" type="Node2D" parent="." unique_id=838211715]
+
+[node name="room2" parent="Rooms" unique_id=1778822521 instance=ExtResource("1_xwkvk")]
+position = Vector2(-240, -135)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1378615440]
 
