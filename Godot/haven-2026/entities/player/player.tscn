@@ -176,7 +176,7 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ghhj"]
-radius = 15.0
+radius = 36.013885
 
 [node name="Player" type="CharacterBody2D" unique_id=1011859006]
 texture_filter = 1
