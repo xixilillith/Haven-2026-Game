@@ -28,8 +28,7 @@ func _physics_process(delta: float) -> void:
 		drag_line.visible = false
 		pull_vec = pull_vec.limit_length(MAX_DRAG)
 		velocity = pull_vec * POWER
-	velocity.x = move_toward(velocity.x, 0, FRICTION)
-	velocity.y = move_toward(velocity.y, 0, FRICTION)
+
 
 	global_position = global_position + (velocity * delta)
 	move_and_slide()
