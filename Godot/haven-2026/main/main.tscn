@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bpw8lk6bsr2x0"]
 
 [ext_resource type="PackedScene" uid="uid://bj1t26sx5cpc0" path="res://entities/player/player.tscn" id="1_53q0u"]
+[ext_resource type="PackedScene" uid="uid://bvmvx7mdvcyp" path="res://rooms/room_scenes/dungeon.tscn" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://bhhaoeepwyca1" path="res://rooms/room_scenes/2_doors/N_W.tscn" id="1_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://vrkuhoxfj7by" path="res://entities/player/assets/draggable_line.tscn" id="2_pjrb6"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
+
+[node name="Dungeon" parent="." unique_id=2143834422 instance=ExtResource("1_c651c")]
 
 [node name="Rooms" type="Node2D" parent="." unique_id=838211715]
 
@@ -17,3 +20,4 @@ position = Vector2(-240, -135)
 drag_line = NodePath("../draggable_line")
 
 [node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
+top_level = true
