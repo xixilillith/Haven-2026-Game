@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bjb1mbw7aii6w"]
 
 [ext_resource type="TileSet" uid="uid://5vhc2dyffixp" path="res://rooms/assets/tileset.tres" id="1_3wphv"]
-[ext_resource type="PackedScene" uid="uid://cdd8ff5biflf8" path="res://rooms/assets/Door.tscn" id="2_ktfi6"]
+[ext_resource type="PackedScene" uid="uid://b82pmu5q87j7a" path="res://rooms/assets/Door2x1.tscn" id="2_ktfi6"]
 
 [node name="room4" type="Node2D" unique_id=1778822521]
 
@@ -10,17 +10,4 @@ tile_map_data = PackedByteArray("AAABAAEAAAADAAEAAAABAAIAAAADAAEAAAABAAMAAAADAAE
 tile_set = ExtResource("1_3wphv")
 
 [node name="Door_S" parent="." unique_id=1455622231 instance=ExtResource("2_ktfi6")]
-position = Vector2(243, 280)
-size_x = 32.0
-size_y = 16.0
-
-[node name="CollisionShape2D" parent="Door_S" index="0" unique_id=166726386]
-position = Vector2(-3, -17)
-
-[node name="Start" parent="Door_S" index="1" unique_id=1237007527]
-position = Vector2(-3, -9)
-
-[node name="Spawn" parent="Door_S" index="2" unique_id=1485149433]
-position = Vector2(-3, -29)
-
-[editable path="Door_S"]
+position = Vector2(240, 263)
