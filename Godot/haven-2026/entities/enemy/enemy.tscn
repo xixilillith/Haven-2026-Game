@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://t5mcpwvvph0u" path="res://entities/enemy/enemy.gd" id="1_3fvr7"]
 [ext_resource type="Texture2D" uid="uid://bcv87afec7gft" path="res://entities/enemy/assets/girl.png" id="1_ksmh7"]
 [ext_resource type="Texture2D" uid="uid://t72cjkrr5385" path="res://entities/enemy/assets/nerd.png" id="3_dt443"]
+[ext_resource type="Texture2D" uid="uid://s56s3qad61i4" path="res://entities/enemy/assets/flesh.png" id="4_dt443"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_im2q6"]
 atlas = ExtResource("1_ksmh7")
@@ -128,7 +129,11 @@ rect = Rect2(-7, -10, 14, 20)
 
 [node name="Timer" type="Timer" parent="." unique_id=1548856479]
 wait_time = 0.5
-autostart = true
 
+[node name="flesh_sprite" type="Sprite2D" parent="." unique_id=610680307]
+visible = false
+texture = ExtResource("4_dt443")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

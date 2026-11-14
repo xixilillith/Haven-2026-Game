@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d20oenai5y36k" path="res://rooms/room_scenes/1_Doors/E.tscn" id="6_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bg52njj1tfc08" path="res://rooms/room_scenes/3_Doors/E_S_W.tscn" id="7_bsumw"]
 [ext_resource type="PackedScene" uid="uid://btffj1t5atklx" path="res://rooms/room_scenes/1_Doors/Boss.tscn" id="8_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://cturme0vum084" path="res://entities/enemy/enemy.tscn" id="11_bsumw"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
 
@@ -76,6 +77,8 @@ drag_line = NodePath("../draggable_line")
 [node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
 visible = false
 top_level = true
+
+[node name="Area2D" parent="." unique_id=1041187423 instance=ExtResource("11_bsumw")]
 
 [editable path="Rooms/room3"]
 [editable path="Rooms/room3/Door_W"]
