@@ -15,10 +15,10 @@
 
 [node name="Rooms" type="Node2D" parent="." unique_id=838211715]
 
-[node name="room4" parent="Rooms" unique_id=1778822521 instance=ExtResource("1_4dugh")]
+[node name="room17" parent="Rooms" unique_id=1778822521 instance=ExtResource("7_bsumw")]
+position = Vector2(0, -270)
 
-[node name="room2" parent="Rooms" unique_id=2001538599 instance=ExtResource("2_67ri8")]
-position = Vector2(0, -271)
+[node name="room4" parent="Rooms" unique_id=1736408932 instance=ExtResource("1_4dugh")]
 
 [node name="room3" parent="Rooms" unique_id=1849505131 instance=ExtResource("3_grrlh")]
 position = Vector2(479, -270)
@@ -33,16 +33,16 @@ position = Vector2(-480, -271)
 position = Vector2(-480, -543)
 
 [node name="room7" parent="Rooms" unique_id=470890685 instance=ExtResource("3_grrlh")]
-position = Vector2(-12, -537)
+position = Vector2(-1, -542)
 
 [node name="room10" parent="Rooms" unique_id=1031436776 instance=ExtResource("6_0i4oc")]
 position = Vector2(-981, -810)
 
 [node name="room8" parent="Rooms" unique_id=1418583784 instance=ExtResource("2_67ri8")]
-position = Vector2(-491, -808)
+position = Vector2(-480, -815)
 
 [node name="room11" parent="Rooms" unique_id=1220393643 instance=ExtResource("3_grrlh")]
-position = Vector2(-15, -784)
+position = Vector2(-1, -814)
 
 [node name="room12" parent="Rooms" unique_id=72387313 instance=ExtResource("5_bsumw")]
 position = Vector2(-493, -1080)
