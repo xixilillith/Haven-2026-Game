@@ -61,9 +61,8 @@ func generate_dungeon(main_path_length: int = 6, branch_count: int = 2):
 			cells ["scene"] = BOSS_ROOM_SCENE
 		else:
 			#if not it converts the rooms doors into a alphabet look up key and then chooses random matching rooms. 
-			var key := _get_direction_key(cells["doors"])
-			var pool: Array = ROOM_POOLS[key]    
-			cells["scene"] = pool.pick_random() 
+			var key := _get_direction_key(cells["doors"])  
+			cells["scene"] = ROOM_POOLS[key]
 func _try_build_layout(main_path_length: int, branch_count: int) -> bool:
 	dungeon.clear()
 	var main_path: Array[Vector2i] = [Vector2i.ZERO]
@@ -134,22 +133,48 @@ func move_through_door(exit_direction: String) -> void:
 	if not dungeon.has(current_coords):
 		return
 	var current_room: Node2D = spawned_rooms.get(current_coords)
-	var current_pos := current_coords
-	var next_room_pos := next_coords 
-	current_coords += next_coords
+	var current_pos := current_room.global_position if is_instance_valid(current_room) else Vector2.ZERO
+	var next_room_pos := current_pos + (Vector2(DIRS[exit_direction]) * ROOM_SIZE)
+	current_coords = next_coords
 	entry_direction = OPPOSITE[exit_direction]
 	_load_room(dungeon[current_coords]["scene"], next_room_pos)
 func _load_room(room_scene: PackedScene, target_pos: Vector2 = Vector2.ZERO) -> void:
+	var main_scene = get_tree().current_scene
+	var room_parent := main_scene.get_node_or_null("Rooms")
+	if room_parent == null:
+		room_parent = main_scene
 	var room_instance: Node2D
 	if spawned_rooms.has(current_coords) and is_instance_valid(spawned_rooms[current_coords]):
 		room_instance = spawned_rooms[current_coords]
 	else:
 		room_instance = room_scene.instantiate() as Node2D
 		room_instance.global_position = target_pos
-		get_tree().current_scene.add_child(room_instance)
+		room_parent.add_child(room_instance)
 		spawned_rooms[current_coords] = room_instance
-		var cam_tween = get_tree().create_tween()
-		cam_tween.tween_property(get_viewport().get_camera_2d(), "global_position", target_pos, 1)
+	var player := main_scene.get_node_or_null("Player") as CharacterBody2D
+	if player == null:
+		for child in main_scene:
+			if child is CharacterBody2D:
+				player = child
+				break
+	if player:
+		if entry_direction != "":
+			for child in room_instance.get_children():
+				if "door_direction" in child and child.door_direction == entry_direction:
+					var spawn := child.get_node_or_null("Spawn")
+					if spawn:
+						var player_tween = get_tree().create_tween()
+						player_tween.tween_property(player, "global_position", spawn.global_position, 1)
+					break
+			entry_direction = ""
+		else:
+			var start_marker := room_instance.get_node_or_null("PlayerStart")
+			if start_marker:
+				var player_tween = get_tree().create_tween()
+				player_tween.tween_property(player, "global_position", start_marker.global_position, 1)
+			else:
+				var player_tween = get_tree().create_tween()
+				player_tween.tween_property(player, "global_position", room_instance.global_position + (ROOM_SIZE / 2.0), 1)
 	"""
 	get_tree().change_scene_to_file.call_deferred(scene_path)
 	# Wait for the deferred scene swap to finish loading the new room
