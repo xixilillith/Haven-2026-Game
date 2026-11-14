@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bpw8lk6bsr2x0"]
 
 [ext_resource type="PackedScene" uid="uid://bj1t26sx5cpc0" path="res://entities/player/player.tscn" id="1_53q0u"]
+[ext_resource type="PackedScene" uid="uid://vrkuhoxfj7by" path="res://entities/player/assets/draggable_line.tscn" id="2_pjrb6"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1378615440]
 
-[node name="Player" parent="." unique_id=1011859006 instance=ExtResource("1_53q0u")]
+[node name="Player" parent="." unique_id=1011859006 node_paths=PackedStringArray("drag_line") instance=ExtResource("1_53q0u")]
+drag_line = NodePath("../draggable_line")
+
+[node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
