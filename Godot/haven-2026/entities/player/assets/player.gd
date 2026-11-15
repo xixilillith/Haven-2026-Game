@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var audio: AudioStreamPlayer
 var death_anim = false
 var health = 100
 const FRICTION = 1
@@ -43,6 +44,7 @@ func _physics_process(delta: float) -> void:
 			bouncing = false
 	else:
 		if not death_anim:
+			audio.play()
 			$Face.visible = false
 			$Body.play("death")
 			death_anim = true

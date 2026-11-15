@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bj1t26sx5cpc0" path="res://entities/player/player.tscn" id="1_53q0u"]
 [ext_resource type="PackedScene" uid="uid://vrkuhoxfj7by" path="res://entities/player/assets/draggable_line.tscn" id="2_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://c6hll8evrvfpw" path="res://main/spawner.tscn" id="5_3wy1v"]
+[ext_resource type="AudioStream" uid="uid://ccm4sjnp6dt6s" path="res://audio/Haven_2026_Intro.mp3" id="6_67ri8"]
+[ext_resource type="AudioStream" uid="uid://dygjjrqi8kaio" path="res://audio/Haven_2026_Loop.mp3" id="7_grrlh"]
+[ext_resource type="Script" uid="uid://tgnfqniwu7bl" path="res://main/audio_stream_player_2.gd" id="8_0i4oc"]
+[ext_resource type="AudioStream" uid="uid://ccqr3o6l1jtlq" path="res://audio/Pop.mp3" id="9_grrlh"]
 [ext_resource type="PackedScene" uid="uid://cturme0vum084" path="res://entities/enemy/enemy.tscn" id="11_bsumw"]
 
 [node name="Node2D" type="Node2D" unique_id=241110183]
@@ -11,13 +15,13 @@
 [node name="Rooms" type="Node2D" parent="." unique_id=838211715]
 
 [node name="room4" parent="Rooms" unique_id=1778822521 instance=ExtResource("1_4dugh")]
-position = Vector2(2.0666142, 0.70423126)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1378615440]
 position = Vector2(240, 135)
 
-[node name="Player" parent="." unique_id=1011859006 node_paths=PackedStringArray("drag_line") instance=ExtResource("1_53q0u")]
+[node name="Player" parent="." unique_id=1011859006 node_paths=PackedStringArray("audio", "drag_line") instance=ExtResource("1_53q0u")]
 position = Vector2(274, 168)
+audio = NodePath("../AudioStreamPlayer3")
 drag_line = NodePath("../draggable_line")
 
 [node name="draggable_line" parent="." unique_id=1801116903 instance=ExtResource("2_pjrb6")]
@@ -37,3 +41,17 @@ position = Vector2(81, 210)
 
 [node name="Spawner4" parent="." unique_id=46385538 instance=ExtResource("5_3wy1v")]
 position = Vector2(404, 199)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=547863586]
+stream = ExtResource("6_67ri8")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1488755402]
+stream = ExtResource("7_grrlh")
+parameters/looping = true
+script = ExtResource("8_0i4oc")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=943345875]
+stream = ExtResource("9_grrlh")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer2" method="_on_audio_stream_player_finished"]
